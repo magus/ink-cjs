@@ -1,4 +1,3 @@
-import process from 'node:process';
 import createReconciler from 'react-reconciler';
 import {DefaultEventPriority} from 'react-reconciler/constants.js';
 // eslint-disable-next-line n/file-extension-in-import
@@ -19,28 +18,6 @@ import {
 } from './dom.js';
 import applyStyles, {type Styles} from './styles.js';
 import {type OutputTransformer} from './render-node-to-output.js';
-
-// We need to conditionally perform devtools connection to avoid
-// accidentally breaking other third-party code.
-// See https://github.com/vadimdemedes/ink/issues/384
-if (process.env['DEV'] === 'true') {
-	try {
-		await import('./devtools.js');
-	} catch (error: any) {
-		if (error.code === 'MODULE_NOT_FOUND') {
-			console.warn(
-				`
-Debugging with React Devtools requires \`react-devtools-core\` dependency to be installed.
-
-$ npm install --save-dev react-devtools-core
-				`.trim() + '\n'
-			);
-		} else {
-			// eslint-disable-next-line @typescript-eslint/no-throw-literal
-			throw error;
-		}
-	}
-}
 
 type AnyObject = Record<string, unknown>;
 

@@ -3,7 +3,10 @@ import {type Boxes, type BoxStyle} from 'cli-boxes';
 import {type LiteralUnion} from 'type-fest';
 import {type ForegroundColorName} from 'chalk';
 // eslint-disable-next-line n/file-extension-in-import
-import Yoga, {type Node as YogaNode} from 'yoga-wasm-web/auto';
+import type {Node as YogaNode, Yoga as YogaType} from 'yoga-wasm-web/auto';
+import UnsafeYoga from '@react-pdf/yoga';
+
+const Yoga = UnsafeYoga as YogaType;
 
 export type Styles = {
 	readonly textWrap?:

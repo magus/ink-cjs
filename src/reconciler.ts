@@ -1,7 +1,8 @@
 import createReconciler from 'react-reconciler';
 import {DefaultEventPriority} from 'react-reconciler/constants.js';
 // eslint-disable-next-line n/file-extension-in-import
-import Yoga, {type Node as YogaNode} from 'yoga-wasm-web/auto';
+import type {Node as YogaNode, Yoga as YogaType} from 'yoga-wasm-web/auto';
+import UnsafeYoga from '@react-pdf/yoga';
 import {
 	createTextNode,
 	appendChildNode,
@@ -18,6 +19,8 @@ import {
 } from './dom.js';
 import applyStyles, {type Styles} from './styles.js';
 import {type OutputTransformer} from './render-node-to-output.js';
+
+const Yoga = UnsafeYoga as YogaType;
 
 type AnyObject = Record<string, unknown>;
 

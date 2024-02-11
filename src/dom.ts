@@ -1,10 +1,13 @@
 // eslint-disable-next-line n/file-extension-in-import
-import Yoga, {type Node as YogaNode} from 'yoga-wasm-web/auto';
+import type {Node as YogaNode, Yoga as YogaType} from 'yoga-wasm-web/auto';
+import UnsafeYoga from '@react-pdf/yoga';
 import measureText from './measure-text.js';
 import {type Styles} from './styles.js';
 import wrapText from './wrap-text.js';
 import squashTextNodes from './squash-text-nodes.js';
 import {type OutputTransformer} from './render-node-to-output.js';
+
+const Yoga = UnsafeYoga as YogaType;
 
 type InkNode = {
 	parentNode: DOMElement | undefined;
